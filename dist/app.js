@@ -1,46 +1,42 @@
 "use strict";
-// const typeOp = document.querySelector('#typeOperation')
-// const montant = document.querySelector('#montant')
-// const motif = document.querySelector('#motif')
 const form = document.querySelector('form');
-//console.log(form)
-//console.log(typeOp,montant,motif)
-// const arrayType = [];
-// const arrayMontant = [];
-// const arrayMotif = [];
-// typeOp?.addEventListener('change',(e)=>{
-//     if(e.target.value!==""){
-//             arrayType.push(e.target.value!)
-//     }
-// })
-// montant?.addEventListener('change',(e)=>{
-//     if(e.target.value!==""){
-//         arrayMontant.push(e.target.value!)
-//     }
-// })
-// motif?.addEventListener('change',(e)=>{
-//     if(e.target.value!==""){
-//         arrayMotif.push(e.target.value)
-//     }
-// })
 const typeOp = document.querySelector('#typeOperation');
 const montant = document.querySelector('#montant');
 const motif = document.querySelector('#motif');
 const liste = document.querySelector('.listeOrdonnee');
+let localStore = window.localStorage.account;
+let listForm = [];
+let liststore = window.localStorage.accounts;
+
+if (liststore){
+    liste.innerHTML = liststore;
+
+}
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (typeOp.value !== "" && montant.value > 0 && motif.value.length >= 5) {
+        listForm.push({
+            operation: typeOp.value,
+            montant: montant.value,
+            motif: motif.value
+        });
+        console.log(JSON.stringify(listForm));
+        window.localStorage.account = JSON.stringify(listForm);
         if (typeOp.value === 'debit') {
             liste.innerHTML += `<li class = "itemlistdebit">
-           Débit:<br>
-           ${montant.value} déposait suite à un(e)${motif.value}
-           </li><hr>`;
+            Débit:<br>
+            <span>${montant.value}</span> déposait suite à un(e) ${motif.value}
+            </li><hr>`;
+            window.localStorage.accounts = liste.innerHTML;
         }
+        // the user have to enter a kind of sum (money in $) : in function of typeOp 
         if (typeOp.value === 'credit') {
             liste.innerHTML += `<li class = "itemlistcredit">
             Crédit:<br>
-            ${montant.value} déposait suite à un(e)${motif.value}
+            <span>${montant.value}</span>  déposait suite à un(e) ${motif.value}
             </li><hr>`;
+            window.localStorage.accounts = liste.innerHTML;
         }
     }
     else {
