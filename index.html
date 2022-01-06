@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typescript</title>
+    <link rel="stylesheet" href="./dist/style.css">
+</head>
+<body>
+    <header>
+        <h1>Comptes</h1>
+    </header>
+    <main>
+        <ul class="listeOrdonnee">
+
+        </ul>
+    </main>
+    <footer>
+        <form action="">
+            <label for="typeOperation">type d'opération</label>
+            <select name="typeOperation" id="typeOperation">
+                <option value="">Type</option>
+                <option value="debit">debit</option>
+                <option value="credit">credit</option>
+            </select>
+            <label for="montant">Montant</label>
+            <input type="number" name="montant" id="montant">
+            <label for="motif">Motif</label>
+            <input type="text" name="motif" id="motif">
+            <input type="submit" value="valider">
+
+        </form>
+    </footer>
+    <script src="./dist/app.js" type="module"></script>
+</body>
+</html>
